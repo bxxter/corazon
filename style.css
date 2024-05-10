@@ -1,0 +1,70 @@
+/* Estilos para el cuerpo de la página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0c0b0b;
+}
+
+/* Definición de la animación para cambiar el color del corazón */
+@keyframes cambioColor {
+    0%, 100% { --color: firebrick;} /* Color inicial y final */
+    25% { --color: #FF5733;} /* Color en el 25% del tiempo */
+    50% { --color: #FFC300;} /* Color en el 50% del tiempo */
+    75% { --color: #C70039;} /* Color en el 75% del tiempo */
+}
+
+/* Estilos para el corazón animado */
+.corazon {
+    --tamaño: 150px;
+    --color: firebrick;
+    height: var(--tamaño);
+    width: var(--tamaño);
+    background: var(--color);
+    transform: rotate(45deg);
+    animation: heart .5s infinite alternate ease, cambioColor 8s infinite; /* Animaciones aplicadas */
+    position: relative;
+}
+
+/* Estilos para el texto dentro del corazón */
+.corazon p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    margin: 0; /* Eliminar márgenes */
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    white-space: nowrap;
+    z-index: 1; /* Capa z para estar sobre las pseudoelementos */
+}
+
+/* Estilos para los pseudoelementos del corazón */
+.corazon::before, .corazon::after {
+    content: "";
+    display: block;
+    border-radius: 50%; /* Borde redondeado */
+    height: var(--tamaño);
+    width: var(--tamaño);
+    background: var(--color);
+    position: absolute;
+}
+
+
+.corazon::before {
+    transform: translateY(-75px);
+}
+
+
+.corazon::after {
+    transform: translateX(-75px);
+}
+
+/* Definición de la animación para el efecto de latido */
+@keyframes heart {
+    from {
+        transform: scale(1.5) rotate(45deg);
+    }
+}
